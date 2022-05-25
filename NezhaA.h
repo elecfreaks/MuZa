@@ -1,5 +1,5 @@
-#ifndef _MUZA_H_
-#define _MUZA_H_
+#ifndef _NEZHAA_H_
+#define _NEZHAA_H_
 
 #include <Arduino.h>
 
@@ -13,10 +13,10 @@ enum MotorID {
   M2
 };
 
-class MuZa
+class NezhaA
 {
 public:
-  MuZa();
+  NezhaA();
   void begin();
   int getLightSensor();
   int getNoiseSensor();

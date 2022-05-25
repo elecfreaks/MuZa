@@ -1,4 +1,4 @@
-#include "MuZa.h"
+#include "NezhaA.h"
 #include <Adafruit_NeoPixel.h>
 #include <Servo.h>
 
@@ -19,12 +19,12 @@ Adafruit_NeoPixel pixel(1, RGB_PIN, NEO_GRB + NEO_KHZ800);
 Servo servo1;
 Servo servo2;
 
-MuZa::MuZa()
+NezhaA::NezhaA()
 {
   _tempo = 60;
 }
 
-void MuZa::begin()
+void NezhaA::begin()
 {
   pinMode(BUZZER_PIN, OUTPUT);
   pinMode(M1_PIN_P, OUTPUT);
@@ -36,17 +36,17 @@ void MuZa::begin()
   servo2.attach(S2_PIN);
 }
 
-int MuZa::getLightSensor()
+int NezhaA::getLightSensor()
 {
   return analogRead(LIGHT_SENSOR_PIN);
 }
 
-int MuZa::getNoiseSensor()
+int NezhaA::getNoiseSensor()
 {
   return analogRead(NOISE_SENSOR_PIN);
 }
 
-void MuZa::tone(uint16_t frequency, uint32_t duration)
+void NezhaA::tone(uint16_t frequency, uint32_t duration)
 {
   if (frequency == 0) {
     digitalWrite(BUZZER_PIN, LOW);
@@ -68,7 +68,7 @@ void MuZa::tone(uint16_t frequency, uint32_t duration)
 /**
  * 20~500
  */
-void MuZa::setTempo(uint16_t tempo)
+void NezhaA::setTempo(uint16_t tempo)
 {
   if (tempo < 20) {
     tempo = 20;
@@ -78,29 +78,29 @@ void MuZa::setTempo(uint16_t tempo)
   _tempo = tempo;
 }
 
-uint32_t MuZa::beatsToMS(float beats)
+uint32_t NezhaA::beatsToMS(float beats)
 {
   return (60.0 / _tempo) * beats * 1000;
 }
 
-void MuZa::showRGB(uint8_t r, uint8_t g, uint8_t b)
+void NezhaA::showRGB(uint8_t r, uint8_t g, uint8_t b)
 {
   pixel.setPixelColor(0, pixel.Color(r, g, b));
   pixel.show();
 }
 
-void MuZa::clearRGB()
+void NezhaA::clearRGB()
 {
   pixel.clear();
   pixel.show();
 }
 
-void MuZa::setRGBBrightness(uint8_t brightness)
+void NezhaA::setRGBBrightness(uint8_t brightness)
 {
   pixel.setBrightness(brightness);
 }
 
-void MuZa::setServoAngle(ServoID id, int angle)
+void NezhaA::setServoAngle(ServoID id, int angle)
 {
   angle = map(angle, 0, SERVO_MAX_ANGLE, 0, 180);
 
@@ -115,7 +115,7 @@ void MuZa::setServoAngle(ServoID id, int angle)
   }
 }
 
-void MuZa::setMotorSpeed(MotorID id, int percent)
+void NezhaA::setMotorSpeed(MotorID id, int percent)
 {
   int val = (int)(abs(percent) / 100.0 * 255);
 
@@ -138,7 +138,7 @@ void MuZa::setMotorSpeed(MotorID id, int percent)
   }
 }
 
-void MuZa::brakeMotor(MotorID id)
+void NezhaA::brakeMotor(MotorID id)
 {
   switch (id)
   {
@@ -151,7 +151,7 @@ void MuZa::brakeMotor(MotorID id)
   }
 }
 
-void MuZa::setDualPWM(uint8_t pin1, uint8_t pin2, int val1, int val2)
+void NezhaA::setDualPWM(uint8_t pin1, uint8_t pin2, int val1, int val2)
 {
   analogWrite(pin1, val1);
   analogWrite(pin2, val2);
